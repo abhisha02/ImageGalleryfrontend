@@ -5,7 +5,7 @@ export const register = createAsyncThunk(
     'auth/register',
     async (userData, thunkAPI) => {
       try {
-        const response = await axiosInstance.post('accounts/register/', userData);
+        const response = await axiosInstance.post('api/register/', userData);
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
         return response.data;
@@ -18,7 +18,7 @@ export const register = createAsyncThunk(
     'auth/login',
     async (userData, thunkAPI) => {
       try {
-        const response = await axiosInstance.post('accounts/login/', userData);
+        const response = await axiosInstance.post('api/login/', userData);
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
         return response.data;
@@ -35,7 +35,7 @@ export const register = createAsyncThunk(
     'auth/forgotPassword',
     async (data, { rejectWithValue }) => {
       try {
-        const response = await axiosInstance.post('accounts/forgot-password/', data);
+        const response = await axiosInstance.post('api/forgot-password/', data);
         console.log(response)
         return response.data;
       } catch (error) {
@@ -47,7 +47,7 @@ export const register = createAsyncThunk(
     'auth/resetPassword',
     async (data, { rejectWithValue }) => {
       try {
-        const response = await axiosInstance.patch('accounts/set-new-password/', data);
+        const response = await axiosInstance.patch('api/set-new-password/', data);
         return response.data;
       } catch (error) {
         if (error.response && error.response.data) {
